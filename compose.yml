@@ -1,0 +1,22 @@
+services:
+  grafana:
+    container_name: grafana-painel
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    #environment:
+      #- GF_SECURITY_ADMIN_PASSWORD=admin # Altere para sua senha desejada
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    user: "472"
+    networks:
+      - smartsafe_net
+
+volumes:
+  grafana-storage: {}
+
+networks: 
+  smartsafe_net:
+    driver: bridge
